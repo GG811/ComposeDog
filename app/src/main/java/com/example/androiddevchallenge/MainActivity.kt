@@ -18,7 +18,6 @@ package com.example.androiddevchallenge
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -46,7 +45,11 @@ class MainActivity : AppCompatActivity() {
                 "detail/{$COURSE_DETAIL_ID_KEY}",
                 arguments = listOf(navArgument(COURSE_DETAIL_ID_KEY) { type = NavType.IntType })
             ) { backStackEntry ->
-                DogDetail(navController, backStackEntry.arguments?.getInt(COURSE_DETAIL_ID_KEY) ?: 0)
+                var index = backStackEntry.arguments?.getInt(COURSE_DETAIL_ID_KEY)
+                if (index==null) {
+                    index = 0
+                }
+                DogDetail(navController, index)
             }
         }
 

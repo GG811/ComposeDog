@@ -83,7 +83,7 @@ fun DogItem(meg: Msg, modifier: Modifier) {
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Image(
-                    ImageBitmap.Companion.imageResource(meg.dog.avatar), "", modifier = Modifier
+                    ImageBitmap.Companion.imageResource(meg.dog.avatar), meg.title, modifier = Modifier
                         .fillMaxHeight()
                         .width(80.dp), contentScale = ContentScale.Crop
                 )
