@@ -46,15 +46,11 @@ class MainActivity : AppCompatActivity() {
                 arguments = listOf(navArgument(COURSE_DETAIL_ID_KEY) { type = NavType.IntType })
             ) { backStackEntry ->
                 var index = backStackEntry.arguments?.getInt(COURSE_DETAIL_ID_KEY)
-                if (index==null) {
+                if (index == null) {
                     index = 0
                 }
                 DogDetail(navController, index)
             }
         }
-
     }
-
-
 }
-

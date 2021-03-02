@@ -22,4 +22,4 @@ data class Dog(
     val name: String,
     val age: Float,
     @DrawableRes val avatar: Int
-)
+    )
