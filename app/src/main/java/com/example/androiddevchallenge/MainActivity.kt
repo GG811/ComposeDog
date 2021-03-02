@@ -18,44 +18,40 @@ package com.example.androiddevchallenge
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.androiddevchallenge.ui.theme.MyTheme
 
+import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.navArgument
+import androidx.navigation.compose.rememberNavController
+import com.example.androiddevchallenge.ui.view.DogDetail
+import com.example.androiddevchallenge.ui.view.DogList
+
+const val COURSE_DETAIL_ID_KEY = "index"
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyTheme {
-                MyApp()
-            }
+            DogApp()
         }
     }
+
+    @Composable
+    fun DogApp() {
+        val navController = rememberNavController()
+        NavHost(navController = navController, startDestination = "list") {
+            composable("list") { DogList(navController) }
+            composable(
+                "detail/{$COURSE_DETAIL_ID_KEY}",
+                arguments = listOf(navArgument(COURSE_DETAIL_ID_KEY) { type = NavType.IntType })
+            ) { backStackEntry ->
+                DogDetail(navController, backStackEntry.arguments?.getInt(COURSE_DETAIL_ID_KEY) ?: 0)
+            }
+        }
+
+    }
+
+
 }
 
-// Start building your app here!
-@Composable
-fun MyApp() {
-    Surface(color = MaterialTheme.colors.background) {
-        Text(text = "Ready... Set... GO!")
-    }
-}
-
-@Preview("Light Theme", widthDp = 360, heightDp = 640)
-@Composable
-fun LightPreview() {
-    MyTheme {
-        MyApp()
-    }
-}
-
-@Preview("Dark Theme", widthDp = 360, heightDp = 640)
-@Composable
-fun DarkPreview() {
-    MyTheme(darkTheme = true) {
-        MyApp()
-    }
-}
