@@ -28,6 +28,7 @@ import com.example.androiddevchallenge.ui.view.DogDetail
 import com.example.androiddevchallenge.ui.view.DogList
 
 const val COURSE_DETAIL_ID_KEY = "index"
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,5 +54,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 }
