@@ -64,5 +64,4 @@ class DogViewModel : ViewModel() {
             )
         )
     )
-
 }
