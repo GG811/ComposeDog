@@ -44,14 +44,15 @@ class MainActivity : AppCompatActivity() {
             composable("list") { DogList(navController) }
             composable(
                 "detail/{$COURSE_DETAIL_ID_KEY}",
-                arguments = listOf(navArgument(COURSE_DETAIL_ID_KEY) { type = NavType.IntType })
-            ) { backStackEntry ->
-                var index = backStackEntry.arguments?.getInt(COURSE_DETAIL_ID_KEY)
-                if (index == null) {
-                    index = 0
+                arguments = listOf(navArgument(COURSE_DETAIL_ID_KEY) { type = NavType.IntType }),
+                content = { backStackEntry ->
+                    var index = backStackEntry.arguments?.getInt(COURSE_DETAIL_ID_KEY)
+                    if (index == null) {
+                        index = 0
+                    }
+                    DogDetail(navController, index)
                 }
-                DogDetail(navController, index)
-            }
+            )
         }
     }
 }
