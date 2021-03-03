@@ -20,12 +20,11 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -63,9 +62,12 @@ fun DogList(navController: NavController) {
 fun DogList(list: List<Msg>, navController: NavController) {
     LazyColumn(Modifier.fillMaxWidth()) {
         itemsIndexed(list) { index, msg ->
-            DogItem(msg, Modifier.clickable {
-                navController.navigate("detail/$index")
-            })
+            DogItem(
+                msg,
+                Modifier.clickable {
+                    navController.navigate("detail/$index")
+                }
+            )
         }
     }
 }
@@ -79,13 +81,16 @@ fun DogItem(meg: Msg, modifier: Modifier) {
         Card(
             Modifier
                 .height(80.dp)
-                .fillMaxWidth(), shape = RoundedCornerShape(6.dp)
+                .fillMaxWidth(),
+            shape = RoundedCornerShape(6.dp)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Image(
-                    ImageBitmap.Companion.imageResource(meg.dog.avatar), meg.title, modifier = Modifier
+                    ImageBitmap.Companion.imageResource(meg.dog.avatar), meg.title,
+                    modifier = Modifier
                         .fillMaxHeight()
-                        .width(80.dp), contentScale = ContentScale.Crop
+                        .width(80.dp),
+                    contentScale = ContentScale.Crop
                 )
                 Column(
                     modifier = Modifier
@@ -105,5 +110,4 @@ fun DogItem(meg: Msg, modifier: Modifier) {
             }
         }
     }
-
 }
